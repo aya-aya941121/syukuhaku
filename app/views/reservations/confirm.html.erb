@@ -1,0 +1,28 @@
+<h1>予約確認</h1>
+
+<%= form_with(model: @reservation, url: reservations_path, method: :post) do |form| %>
+  <%= form.hidden_field :room_id, value: @room.id %>
+  <%= form.hidden_field :user_id, value: current_user.id %>
+
+  <div class="form-group">
+    <%= form.label :check_in_date, "チェックイン日" %>
+    <%= form.date_field :check_in_date, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :check_out_date, "チェックアウト日" %>
+    <%= form.date_field :check_out_date, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :num_guests, "人数" %>
+    <%= form.number_field :num_guests, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :total_price, "支払い金額" %>
+    <%= form.text_field :total_price, class: "form-control", readonly: true %>
+  </div>
+
+  <%= form.submit "予約する", class: "btn btn-primary" %>
+<% end %>
