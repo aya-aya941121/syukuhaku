@@ -1,6 +1,8 @@
 class RoomsController < ApplicationController
-    before_action :authenticate_user!, except: [:index, :show]
+    before_action :authenticate_user!, except: [:index, :show, :search]
     before_action :set_room, only: [:show, :edit, :update, :destroy]
+  
+    skip_before_action :authenticate_user!, only: [:search]
   
     def index
       @rooms = Room.all
@@ -39,6 +41,10 @@ class RoomsController < ApplicationController
       @room.destroy
       redirect_to rooms_path, notice: '施設を削除しました。'
     end
+  
+    # def search
+    #   @areas = Area.all
+    # end
   
     private
   

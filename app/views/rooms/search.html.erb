@@ -1,5 +1,14 @@
-<%= form_tag rooms_search_path, method: :get do %>
-  <%= label_tag :area_id, "エリア" %>
-  <%= select_tag :area_id, options_from_collection_for_select(@areas, :id, :name) %>
-  <%= submit_tag "検索" %>
+<!-- 検索結果を表示 -->
+<h2>検索結果</h2>
+<% if @rooms.present? %>
+  <% @rooms.each do |room| %>
+    <div>
+      <h3><%= link_to room.name, room_path(room) %></h3>
+      <p><%= room.address %></p>
+      <p><%= room.description %></p>
+      <p>宿泊料金: <%= room.price %>円/日</p>
+    </div>
+  <% end %>
+<% else %>
+  <p>検索結果がありません。</p>
 <% end %>

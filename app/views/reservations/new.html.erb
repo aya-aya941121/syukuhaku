@@ -1,34 +1,14 @@
-<h1>予約作成</h1>
+<h1>施設の予約</h1>
 
-<%= form_with(model: @reservation, url: reservations_path, local: true) do |form| %>
-  <% if @reservation.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@reservation.errors.count, "error") %> prohibited this reservation from being saved:</h2>
+<%= form_with(model: [@room, @reservation], url: room_reservations_path(@room)) do |f| %>
+  <%= f.label :check_in_date, "チェックイン日" %>
+  <%= f.date_select :check_in_date, min_date: Date.today, required: true %>
 
-      <ul>
-      <% @reservation.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= f.label :check_out_date, "チェックアウト日" %>
+  <%= f.date_select :check_out_date, min_date: @room.check_in_date, required: true %>
 
-  <div class="field">
-    <%= form.label :check_in_date %>
-    <%= form.date_field :check_in_date %>
-  </div>
+  <%= f.label :number_of_guests, "人数" %>
+  <%= f.number_field :number_of_guests, min: 1, required: true %>
 
-  <div class="field">
-    <%= form.label :check_out_date %>
-    <%= form.date_field :check_out_date %>
-  </div>
-
-  <div class="field">
-    <%= form.label :number_of_guests %>
-    <%= form.number_field :number_of_guests %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+  <%= f.submit "予約する" %>
 <% end %>
