@@ -1,0 +1,19 @@
+<h1>施設一覧</h1>
+
+<% if @rooms.present? %>
+  <% @rooms.each do |room| %>
+    <div>
+      <% if room.photo_url.present? %>
+        <%= image_tag room.photo_url %>
+      <% else %>
+        <%= image_tag "shisetsu/default-room-photo.png" %>
+      <% end %>
+      <h2><%= room.name %></h2>
+      <p><%= room.description %></p>
+      <p>価格: <%= room.price %></p>
+      <p>住所: <%= room.address %></p>
+    </div>
+  <% end %>
+<% else %>
+  <p>部屋がありません</p>
+<% end %> 

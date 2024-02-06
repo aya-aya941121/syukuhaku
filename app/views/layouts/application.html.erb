@@ -8,6 +8,31 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <% if user_signed_in? %>
+     <div>
+      <% if current_user.avatar.present? %>
+       <%= image_tag(current_user.avatar, alt: current_user.username, class: "avatar") %>
+      <% else %>
+       <%= image_tag("default-avatar.png", alt: current_user.name, class: "avatar") %>
+      <% end %>
+      <a href="#" class="dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+       <%= current_user.name %>
+      </a>
+       <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <p><%= link_to "施設の新規登録", new_room_path %></p>
+        <p><%= link_to "予約済一覧", reservations_path %></p>
+        <p><%= link_to "登録済一覧", room_list_path %></p>
+        <%# <li><%= link_to "アカウントページ", user_path %></li> %>
+        <p><%= link_to "プロフィール編集ページ", edit_user_path(current_user) %></P>
+        <p><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></p>
+       </ul>
+     </div>
+    <% else %>
+     <ul class="navbar-nav ml-auto">
+      <li class="nav-item"><%= link_to "ログイン", new_user_session_path, class: "nav-link" %></li>
+      <li class="nav-item"><%= link_to "新規登録", new_user_registration_path, class: "nav-link" %></li>
+     </ul>
+    <% end %>
   </head>
 
   <body>

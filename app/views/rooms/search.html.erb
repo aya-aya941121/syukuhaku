@@ -1,3 +1,5 @@
+
+    
 <!-- 検索結果を表示 -->
 <h2>検索結果</h2>
 <% if @rooms.present? %>
@@ -7,8 +9,17 @@
       <p><%= room.address %></p>
       <p><%= room.description %></p>
       <p>宿泊料金: <%= room.price %>円/日</p>
+      <% if room.photo_url.present? %>
+        <%= image_tag room.photo_url %>
+      <% else %>
+        <%= image_tag('/shisetsu/default-room-photo.png') %> 
+      <% end %>
     </div>
   <% end %>
 <% else %>
   <p>検索結果がありません。</p>
 <% end %>
+
+<div>
+  <%= link_to '施設検索ページ', rooms_path %>
+</div>

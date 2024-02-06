@@ -9,15 +9,18 @@ class RoomsController < ApplicationController
     end
   
     def show
+      @room = Room.find(params[:id]) 
     end
   
     def new
       @room = Room.new
+    #   @room.build_photo
     end
   
     def create
       @room = Room.new(room_params)
-      @room.user = current_user
+      @room.user_id = current_user.id
+  
   
       if @room.save
         redirect_to @room, notice: '施設を作成しました。'
@@ -42,17 +45,29 @@ class RoomsController < ApplicationController
       redirect_to rooms_path, notice: '施設を削除しました。'
     end
   
-    # def search
-    #   @areas = Area.all
-    # end
+    def search
+      @rooms = Room.search(params[:keyword])
+    end
   
     private
   
     def set_room
+     if params[:id] == 'list'
+      @rooms = Room.all # 全ての部屋情報を取得
+    #     # リストページ用の処理を追加する（施設を全て取得するなど）
+     else
       @room = Room.find(params[:id])
+     end
     end
   
     def room_params
-      params.require(:room).permit(:name, :description, :price, :address)
+      params.require(:room).permit(:name, :description, :price, :address, :photo)
     end
+    
+    def list
+      @rooms = Room.all
+      # @rooms = current_user.rooms
+      # @rooms ||= [] # 部屋が存在しない場合は空の配列を代入する
+    end
+
   end

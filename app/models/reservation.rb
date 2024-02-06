@@ -5,6 +5,16 @@ class Reservation < ApplicationRecord
     validate :check_in_must_be_equal_or_after_today
     validate :check_out_must_be_after_check_in
     
+    belongs_to :user
+
+    def check_in_date
+        check_in_at.to_date
+    end
+    
+    def check_out_date
+        check_out_at.to_date
+    end
+
     def check_in_must_be_equal_or_after_today 
         return if check_in_at.to_date >= Time.current.to_date
         errors.add(:check_in_at, "は本日以降の日付で入力してください")
