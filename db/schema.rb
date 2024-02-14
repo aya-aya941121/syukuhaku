@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_02_04_045005) do
+ActiveRecord::Schema.define(version: 2024_02_13_072930) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -59,21 +59,15 @@ ActiveRecord::Schema.define(version: 2024_02_04_045005) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"
-    t.string "photo_url", default: "/Users/user/Desktop/syuku_develop/syukuapp/app/assets/images/shisetsu/default-room-photo.png"
+    t.text "photo_url", default: "/Users/user/Desktop/syuku_develop/syukuapp/app/assets/images/shisetsu/default-room-photo.png"
   end
 
   create_table "users", force: :cascade do |t|
     t.string "name", limit: 10, null: false
+    t.string "email", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.binary "avatar"
-    t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.string "encrypted_password"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

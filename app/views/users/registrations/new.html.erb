@@ -1,7 +1,12 @@
 <h2>新規登録</h2>
 
- <%= form.file_field :avatar, accept: 'image/*' %>
- 
+ <%= form_with(model: resource, url: registration_path(resource_name), as: resource_name, html: { class: 'form-horizontal', role: 'form' }) do |f| %>
+ <div class="field">
+  <%= f.label :image %><br/>
+  <%= f.file_field :image %>
+</div>
+<% end %>
+
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "users/shared/error_messages", resource: resource %>
 

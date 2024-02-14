@@ -1,11 +1,15 @@
 <h1>施設の予約</h1>
 
 <%= form_with(model: [@room, @reservation], url: reservation_confirm_path(@reservation),method:"get") do |f| %>
+  <div>
   <%= f.label :check_in_at, "チェックイン日" %>
-  <%= f.date_select :check_in_at, min_date: Date.today, required: true %>
+  <%= f.date_select :check_in_at, min_date: Date.today, required: true, order: [:year, :month, :day], use_month_numbers: true, date_separator: "/" %>
+  </div>
 
+  <div>
   <%= f.label :check_out_at, "チェックアウト日" %>
-  <%= f.date_select :check_out_at, min_date: Date.today, required: true %>
+  <%= f.date_select :check_out_at, min_date: Date.today, required: true, order: [:year, :month, :day], use_month_numbers: true, date_separator: "/" %>
+  </div>
 
   <%= f.label :number_of_guests, "人数" %>
   <%= f.number_field :number_of_guests, min: 1, required: true %>

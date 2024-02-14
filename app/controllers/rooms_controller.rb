@@ -48,6 +48,10 @@ class RoomsController < ApplicationController
     def search
       @rooms = Room.search(params[:keyword])
     end
+
+    def list
+      @rooms = Room.where(user_id: current_user.id) 
+    end
   
     private
   
@@ -62,12 +66,6 @@ class RoomsController < ApplicationController
   
     def room_params
       params.require(:room).permit(:name, :description, :price, :address, :photo)
-    end
-    
-    def list
-      @rooms = Room.all
-      # @rooms = current_user.rooms
-      # @rooms ||= [] # 部屋が存在しない場合は空の配列を代入する
     end
 
   end

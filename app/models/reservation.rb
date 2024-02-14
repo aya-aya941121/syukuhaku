@@ -4,6 +4,7 @@ class Reservation < ApplicationRecord
     validates :people_count, numericality: { only_integer: true, greater_than: 0 }
     validate :check_in_must_be_equal_or_after_today
     validate :check_out_must_be_after_check_in
+    validates :password, presence: true
     
     belongs_to :user
 

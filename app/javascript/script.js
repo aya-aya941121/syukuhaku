@@ -44,11 +44,7 @@ document.addEventListener("DOMContentLoaded", function() {
     dropdownToggleLink.addEventListener("click", function(e) {
       e.preventDefault();
       var dropdownMenu = document.querySelector(".dropdown-menu");
-      if (dropdownMenu.classList.contains("show")) {
-        dropdownMenu.classList.remove("show"); // メニューが開いている場合は閉じる
-      } else {
-        dropdownMenu.classList.add("show"); // メニューが閉じている場合は開く
-      }
+      dropdownMenu.classList.toggle("show"); // メニューが閉じている場合は開く、開いている場合は閉じる
     });
   }
 });

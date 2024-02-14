@@ -5,11 +5,7 @@
   <%= form.label :photo, "写真" %>
   <%= form.file_field :photo %>
 </div>
-<%# <% if @room.photo.attached? %> 
-  <%# <%= image_tag @room.photo %> 
-<%# <% else %> 
-  <%# <%= image_tag('/shisetsu/default-room-photo.png') %> 
-<%# <% end %> 
+
 
 <div>
  <%= form_with(model: @room, url: rooms_path, local: true) do |form| %>
