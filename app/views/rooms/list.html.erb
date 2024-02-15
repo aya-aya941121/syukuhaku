@@ -3,8 +3,8 @@
 <% if @rooms.present? %>
   <% @rooms.each do |room| %>
     <div>
-      <% if room.photo_url.present? %>
-        <%= image_tag room.photo_url %>
+      <% if room.photo.present? %>
+        <%= image_tag room.photo %>
       <% else %>
         <%= image_tag "shisetsu/default-room-photo.png" %>
       <% end %>
@@ -12,6 +12,7 @@
       <p><%= room.description %></p>
       <p>価格: <%= room.price %></p>
       <p>住所: <%= room.address %></p>
+      <p>登録日: <%= room.created_at.strftime("%Y年%m月%d日") %></p>
     </div>
   <% end %>
 <% else %>
