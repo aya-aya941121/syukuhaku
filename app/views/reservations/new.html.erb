@@ -1,6 +1,11 @@
 <h1>施設の予約</h1>
 
-<%= form_with(model: [@room, @reservation], url: reservation_confirm_path(@reservation),method:"get") do |f| %>
+<h1><%= @room.name %></h1>
+<p><%= @room.description %></p>
+<p>宿泊料金： <%= @room.price %>円/日</p>
+
+<%= form_with(model: @reservation, url: reservations_confirm_path(@reservation),method:"POST") do |f| %>
+ <%= f.hidden_field :room_id, value: @room.id %>
   <div>
   <%= f.label :check_in_at, "チェックイン日" %>
   <%= f.date_select :check_in_at, min_date: Date.today, required: true, order: [:year, :month, :day], use_month_numbers: true, date_separator: "/" %>
@@ -11,8 +16,8 @@
   <%= f.date_select :check_out_at, min_date: Date.today, required: true, order: [:year, :month, :day], use_month_numbers: true, date_separator: "/" %>
   </div>
 
-  <%= f.label :number_of_guests, "人数" %>
-  <%= f.number_field :number_of_guests, min: 1, required: true %>
+  <%= f.label :people_count, "人数" %>
+  <%= f.number_field :people_count, min: 1, required: true %>
 
   <%= f.submit "予約する" %>
 <% end %>

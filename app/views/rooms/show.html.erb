@@ -1,5 +1,5 @@
-<% if @room&.photo_url.present? %>
-  <%= image_tag @room.photo_url %>
+<% if @room&.photo.present? %>
+  <%= image_tag @room.photo %>
 <% else %>
   <%= image_tag "shisetsu/default-room-photo.png" %>
 <% end %>
@@ -8,5 +8,6 @@
 <p><%= @room.description %></p>
 <p>宿泊料金： <%= @room.price %>円/日</p>
 <p><%= link_to '予約する', new_reservation_path(room_id: @room.id) %></p>
+<%# <p><%= link_to '予約する', confirm_reservations_path(room_id: @room.id), method: :post %></p> %>
 
 <%= link_to "前のページに戻る", :back %>

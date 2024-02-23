@@ -1,9 +1,28 @@
 <h1>予約確認</h1>
 
-<p>チェックイン日： <%= @reservation.check_in_at %></p>
-<p>チェックアウト日： <%= @reservation.check_out_at %></p>
-<p>宿泊日数： <%= (@reservation.check_out_at - @reservation.check_in_at).to_i %> 泊</p>
-<p>人数： <%= @reservation.number_of_guests %> 人</p>
-<p>支払い金額: <%= calculate_payment_amount(@reservation) %> 円</p>
+<% if @reservation && @reservation.check_in_at && @reservation.check_out_at %>
+<p>チェックイン日： <%= @reservation.check_in_at.strftime("%Y/%m/%d") %></p>
+<p>チェックアウト日： <%= @reservation.check_out_at.strftime("%Y/%m/%d") %></p>
+<p>宿泊日数： <%= (@reservation.check_out_at.to_date - @reservation.check_in_at.to_date).to_i %> 泊</p>
+<p>人数： <%= @reservation.people_count %> 人</p>
+<%= hidden_field_tag :room_id, params[:room_id] %>
+<p>合計金額: <%= number_with_delimiter(@total_price) %>円</p>
 
-<%= link_to "予約確定", reservation_path(@reservation), method: :post %>
+
+<% else %>
+ <p>チェックイン日またはチェックアウト日が未入力です。</p>
+<% end %>
+
+
+<%= form_for @reservation, method: :post, url: reservations_back_path do |form| %>
+ <%= form.submit '入力画面に戻る' %>
+<% end %>
+
+<%= form_for @reservation, url: reservations_path, method: :post do |form| %>
+  <%= form.hidden_field :check_in_at %>
+  <%= form.hidden_field :check_out_at %>
+  <%= form.hidden_field :people_count %>
+  <%= form.hidden_field :room_id %>
+
+  <%= form.submit '予約確定' %>
+<% end %>

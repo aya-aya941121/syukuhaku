@@ -1,7 +1,7 @@
 <h1>施設一覧</h1>
 
-<% if @rooms.present? %>
-  <% @rooms.each do |room| %>
+<% if current_user.rooms.present? %>
+  <% current_user.rooms.each do |room| %>
     <div>
       <% if room.photo.present? %>
         <%= image_tag room.photo %>
@@ -17,4 +17,4 @@
   <% end %>
 <% else %>
   <p>部屋がありません</p>
-<% end %> 
+<% end %>

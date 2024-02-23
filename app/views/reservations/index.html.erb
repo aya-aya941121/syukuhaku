@@ -2,12 +2,13 @@
 
 <% @reservations.each do |reservation| %>
   <div>
-    <img src="<%= reservation.room.image_url %>">
-    <h2><%= reservation.room.name %></h2>
-    <p><%= reservation.room.description %></p>
-    <p>合計料金: <%= calculate_total_price(reservation) %>円</p>
-    <p>チェックイン日: <%= reservation.check_in_date %></p>
-    <p>チェックアウト日: <%= reservation.check_out_date %></p>
-    <p>予約確定日時: <%= reservation.created_at %></p>
+    <p>予約ID: <%= reservation.id %></p>
+    <p>チェックイン日： <%= reservation.check_in_at.strftime("%Y/%m/%d") %></p>
+    <p>チェックアウト日： <%= reservation.check_out_at.strftime("%Y/%m/%d") %></p>
+    <p>宿泊日数： <%= (reservation.check_out_at.to_date - reservation.check_in_at.to_date).to_i %> 泊</p>
+    <p>人数： <%= reservation.people_count %> 人</p>
+    <%= hidden_field_tag :room_id, params[:room_id] %>
+    <p>合計金額： <%= number_with_delimiter(reservation.total_price.floor) %>円</p>
+    
   </div>
 <% end %>
