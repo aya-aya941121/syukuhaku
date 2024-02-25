@@ -40,7 +40,6 @@ class ReservationsController < ApplicationController
       end
 
       def index
-        console
         # @room = Room.find(params[:room_id])
       
         @reservations = Reservation.includes(:room).all
