@@ -14,7 +14,7 @@
     <% if user_signed_in? %>
      <div class="mypage-btn-container" id="mypageBtnContainer">
       <% if current_user.avatar.present? %>
-       <%= image_tag(current_user.avatar, alt: current_user.username, class: "avatar") %>
+       <%= image_tag(current_user.avatar, alt: current_user.name, class: "avatar") %>
       <% else %>
        <%= image_tag("default-avatar.png", alt: current_user.name, class: "avatar") %>
       <% end %>
