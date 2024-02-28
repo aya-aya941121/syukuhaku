@@ -1,5 +1,11 @@
 <h1>予約確認</h1>
 
+<% flash.each do |key, value| %>
+  <div class="flash-<%= key %>">
+    <%= value %>
+  </div>
+<% end %>
+
 <% if @reservation && @reservation.check_in_at && @reservation.check_out_at %>
 <p>チェックイン日： <%= @reservation.check_in_at.strftime("%Y/%m/%d") %></p>
 <p>チェックアウト日： <%= @reservation.check_out_at.strftime("%Y/%m/%d") %></p>

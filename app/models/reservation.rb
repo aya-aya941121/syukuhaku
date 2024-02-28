@@ -18,10 +18,16 @@ class Reservation < ApplicationRecord
     end
 
     def check_in_must_be_equal_or_after_today
-        return if check_in_at.blank? || check_in_at.to_date >= Time.current.to_date
-      
+        return if check_in_at.blank? || check_in_at.to_date >= Date.today
+    
         errors.add(:check_in_at, "は本日以降の日付で入力してください")
-    end
+      end
+
+    # def check_in_must_be_equal_or_after_today
+    #     return if check_in_at.blank? || check_in_at.to_date >= Time.current.to_date
+      
+    #     errors.add(:check_in_at, "は本日以降の日付で入力してください")
+    # end
       
     def check_out_must_be_after_check_in
         return if check_out_at.blank? || check_out_at.to_date > check_in_at.to_date

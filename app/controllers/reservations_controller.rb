@@ -18,8 +18,10 @@ class ReservationsController < ApplicationController
         @reservation.save
 
         if @reservation.save
+          flash[:success] = "予約が完了しました。"
           redirect_to reservations_path
         else
+          flash.now[:error] = "予約に失敗しました。"
           render :confirm
         end
 

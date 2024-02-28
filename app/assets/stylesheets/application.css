@@ -14,6 +14,14 @@
  *= require_self
  */
 
+ /*
+ *= require custom
+ */
+
+ header {
+  background-color: #bdeeff; /* 薄い水色のRGB値 */
+}
+
  @import "bootstrap";
 
  .dropdown-menu {
@@ -38,3 +46,6 @@
     line-height: 0.5;
 }
 
+.head {
+  background-color: #bdeeff; /* 薄い水色のRGB値 */
+}

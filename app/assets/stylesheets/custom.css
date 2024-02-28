@@ -1,0 +1,8 @@
+img.search-image {
+    width: 200px;
+    height: 150px; /* 各自必要なサイズに変更してください */
+  }
+
+  .header-container {
+    margin-bottom: 20px; /* ヘッダー下部の余白を設定 */
+  }

@@ -23,7 +23,7 @@ class RoomsController < ApplicationController
   
   
       if @room.save
-        redirect_to @room, notice: '施設を作成しました。'
+        redirect_to @room
       else
         render :new
       end
@@ -34,7 +34,7 @@ class RoomsController < ApplicationController
   
     def update
       if @room.update(room_params)
-        redirect_to @room, notice: '施設を更新しました。'
+        redirect_to @room
       else
         render :edit
       end
@@ -42,11 +42,22 @@ class RoomsController < ApplicationController
   
     def destroy
       @room.destroy
-      redirect_to rooms_path, notice: '施設を削除しました。'
+      redirect_to rooms_path
     end
   
     def search
+      console
       @rooms = Room.search(params[:keyword])
+      
+      # @rooms = Room.all
+
+      # if params[:address].present?
+      #   @rooms = @rooms.where(address: params[:address])
+      # end
+    
+      # if params[:keywords].present?
+      #   @rooms = @rooms.where("name LIKE ?", "%#{params[:keywords]}%")
+      # end
     end
 
     def list
