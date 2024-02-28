@@ -46,18 +46,18 @@ class RoomsController < ApplicationController
     end
   
     def search
-      console
-      @rooms = Room.search(params[:keyword])
+      # @rooms = Room.search(params[:keyword])
       
-      # @rooms = Room.all
+      @rooms = Room.all
 
-      # if params[:address].present?
-      #   @rooms = @rooms.where(address: params[:address])
-      # end
+      if params[:address].present?
+        # @rooms = Room.where("address LIKE ?", "%params[:address]%")
+        @rooms = Room.where("address LIKE ?", "%#{params[:address]}%")
+      end
     
-      # if params[:keywords].present?
-      #   @rooms = @rooms.where("name LIKE ?", "%#{params[:keywords]}%")
-      # end
+      if params[:keywords].present?
+        @rooms = @rooms.where("name LIKE ?", "%#{params[:keywords]}%")
+      end
     end
 
     def list
