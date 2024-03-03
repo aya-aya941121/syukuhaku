@@ -22,17 +22,27 @@
   background-color: #bdeeff; /* 薄い水色のRGB値 */
 }
 
- @import "bootstrap";
+ /* @import "bootstrap"; */
 
  .dropdown-menu {
+  font-size: smaller;
   display: none;
   position: absolute;
   top: 100%;
-  left: 0;
+  left: -24px;
   background-color: #fff;
-  padding: 26px;
+  padding: 17px;
   border: 1px solid #ccc;
   z-index: 999;
+}
+
+.dropdown-menu a {
+  color: black;
+}
+
+.dropdown-menu a:hover {
+  color: black;
+  text-decoration: none;
 }
 
 .mypage-btn-container {
@@ -46,6 +56,4 @@
     line-height: 0.5;
 }
 
-.head {
-  background-color: #bdeeff; /* 薄い水色のRGB値 */
-}
+

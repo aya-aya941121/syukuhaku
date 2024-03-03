@@ -56,7 +56,7 @@ class RoomsController < ApplicationController
       end
     
       if params[:keywords].present?
-        @rooms = @rooms.where("name LIKE ?", "%#{params[:keywords]}%")
+        @rooms = @rooms.where("name LIKE ? OR description LIKE ?", "%#{params[:keywords]}%", "%#{params[:keywords]}%")
       end
     end
 

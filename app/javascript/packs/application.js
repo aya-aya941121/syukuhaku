@@ -16,7 +16,7 @@ require("../script.js")
 //= require rails-ujs
 //= require turbolinks
 //= require_tree .
-import 'bootstrap/dist/js/bootstrap'
+// import 'bootstrap/dist/js/bootstrap'
 
 Rails.start()
 Turbolinks.start()
