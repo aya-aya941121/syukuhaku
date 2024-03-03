@@ -32,14 +32,17 @@ class ReservationsController < ApplicationController
         @reservation = Reservation.new(reservation_params)
         @room = Room.find(params[:reservation][:room_id])
         @reservation.room_id = @room.id
+        @reservation.user_id = current_user.id
         # @reservation.total_price = calculate_total_price(@reservation)
         @total_price = @room.price * @reservation.people_count * (@reservation.check_out_at.to_date - @reservation.check_in_at.to_date).to_i
+
+        unless @reservation.valid?
+          render :new
+        end
+          
       end
 
-      def back
-        @reservation = Reservation.new(reservation_params)
-        render :new
-      end
+
 
       def index
         # @room = Room.find(params[:room_id])

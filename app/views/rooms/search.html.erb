@@ -2,6 +2,9 @@
     
 <!-- 検索結果を表示 -->
 <h2>検索結果</h2>
+
+<p>検索結果件数 <%= @rooms.count%></P>
+
 <% if @rooms.present? %>
   <% @rooms.each do |room| %>
     <div>

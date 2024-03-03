@@ -4,6 +4,10 @@
 <p><%= @room.description %></p>
 <p>宿泊料金： <%= @room.price %>円/日</p>
 
+<% if @reservation.errors %>
+  <p><%= @reservation.errors.full_messages %></p>
+<% end %>
+
 <%= form_with(model: @reservation, url: reservations_confirm_path(@reservation),method:"POST") do |f| %>
  <%= f.hidden_field :room_id, value: @room.id %>
   <div>

@@ -6,6 +6,8 @@
   </div>
 <% end %>
 
+<p>この内容で予約します。よろしいですか？</p>
+
 <% if @reservation && @reservation.check_in_at && @reservation.check_out_at %>
 <p>チェックイン日： <%= @reservation.check_in_at.strftime("%Y/%m/%d") %></p>
 <p>チェックアウト日： <%= @reservation.check_out_at.strftime("%Y/%m/%d") %></p>
@@ -20,9 +22,6 @@
 <% end %>
 
 
-<%= form_for @reservation, method: :post, url: reservations_back_path do |form| %>
- <%= form.submit '入力画面に戻る' %>
-<% end %>
 
 <%= form_for @reservation, url: reservations_path, method: :post do |form| %>
   <%= form.hidden_field :check_in_at %>
