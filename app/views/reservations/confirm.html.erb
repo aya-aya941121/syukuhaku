@@ -1,0 +1,33 @@
+<h1>予約確認</h1>
+
+<% flash.each do |key, value| %>
+  <div class="flash-<%= key %>">
+    <%= value %>
+  </div>
+<% end %>
+
+<p>この内容で予約します。よろしいですか？</p>
+
+<% if @reservation && @reservation.check_in_at && @reservation.check_out_at %>
+<p>チェックイン日： <%= @reservation.check_in_at.strftime("%Y/%m/%d") %></p>
+<p>チェックアウト日： <%= @reservation.check_out_at.strftime("%Y/%m/%d") %></p>
+<p>宿泊日数： <%= (@reservation.check_out_at.to_date - @reservation.check_in_at.to_date).to_i %> 泊</p>
+<p>人数： <%= @reservation.people_count %> 人</p>
+<%= hidden_field_tag :room_id, params[:room_id] %>
+<p>合計金額: <%= number_with_delimiter(@total_price) %>円</p>
+
+
+<% else %>
+ <p>チェックイン日またはチェックアウト日が未入力です。</p>
+<% end %>
+
+
+
+<%= form_for @reservation, url: reservations_path, method: :post do |form| %>
+  <%= form.hidden_field :check_in_at %>
+  <%= form.hidden_field :check_out_at %>
+  <%= form.hidden_field :people_count %>
+  <%= form.hidden_field :room_id %>
+
+  <%= form.submit '予約確定' %>
+<% end %>

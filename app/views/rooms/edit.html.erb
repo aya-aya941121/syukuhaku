@@ -1,0 +1,17 @@
+<h1>施設を編集する</h1>
+
+<%= form_with(model: @room, url: room_path(@room), local: true, method: :patch) do |form| %>
+  <%= form.label :name %>
+  <%= form.text_field :name %>
+
+  <%= form.label :description %>
+  <%= form.text_area :description %>
+
+  <%= form.label :price %>
+  <%= form.number_field :price %>
+
+  <%= form.label :address %>
+  <%= form.text_field :address %>
+
+  <%= form.submit "更新する" %>
+<% end %>

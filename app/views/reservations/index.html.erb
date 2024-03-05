@@ -1,0 +1,28 @@
+<h1>予約一覧</h1>
+
+<% @reservations.each do |reservation| %>
+  <div>
+
+     <% room = reservation.room %>
+  <% if room&.photo.present? %>
+    <%= image_tag room.photo %>
+  <% else %>
+    <%= image_tag "shisetsu/default-room-photo.png" %>
+  <% end %>
+
+    <h4>予約ID: <%= reservation.id %></h4>
+    <p>施設名: <%= reservation.room.name %></p>
+    <p>施設詳細: <%= reservation.room.description %></p>
+
+
+
+    <p>チェックイン日： <%= reservation.check_in_at.strftime("%Y/%m/%d") %></p>
+    <p>チェックアウト日： <%= reservation.check_out_at.strftime("%Y/%m/%d") %></p>
+    <p>宿泊日数： <%= (reservation.check_out_at.to_date - reservation.check_in_at.to_date).to_i %> 泊</p>
+    <p>人数： <%= reservation.people_count %> 人</p>
+    <%= hidden_field_tag :room_id, params[:room_id] %>
+    <p>合計金額： <%= number_with_delimiter(reservation.total_price.floor) %>円</p>
+
+    <p>予約確定日時: <%= reservation.created_at.localtime.strftime("%Y-%m-%d %H:%M") %></p>
+  </div>
+<% end %>

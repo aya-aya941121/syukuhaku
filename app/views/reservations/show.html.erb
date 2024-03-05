@@ -1,0 +1,7 @@
+<h1>予約確認</h1>
+
+<p>チェックイン日: <%= @reservation.check_in_date %></p>
+<p>チェックアウト日: <%= @reservation.check_out_date %></p>
+<p>宿泊日数: <%= (@reservation.check_out_date - @reservation.check_in_date).to_i %>泊</p>
+<p>人数: <%= @reservation.num_of_guests %>人</p>
+<p>支払い金額: <%= @total_price %>円</p>
